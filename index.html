@@ -6,123 +6,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World of Knowledge</title>
+
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./assets/css/courses-list.css" />
     <link rel="stylesheet" href="./assets/css/slider.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="./js/slider.js" defer></script>
-  
 </head>
 
 <body>
+    <script src="./js/initCourses.js" defer></script>
+    <script src="./js/filter.js" defer></script>
     <header>
         <span class="header-logo">
             <h1>World of Knowledge</h1> &nbsp;&nbsp;&nbsp;
         </span>
-        <span>
-            <button class="btn-contact">Contact Us</button>
-        </span>
     </header>
     <main>
-        <div class="slider">
-            <div class="leftArrow" onclick="changeSliderColor()">❰</div>
-            <div class="rightArrow" onclick="changeSliderColor()">❱</div>
+        <div class="slider" style="background-image: url(assets/img/slide0.png);">
+            <div class="leftArrow" onclick="changeSliderColorPrevious()">❰</div>
+            <div class="rightArrow" onclick="changeSliderColorNext()">❱</div>
         </div>
-        <script>
-           
-            </script>
-            
         <div class="container">
-            <div class="search-contener">
-                <input class="search-bar" type=text id="search-input" placeholder="search course...">
-                <i class="fas fa-search"> </i>
+            <div class="search-container">
+                <input class="search-bar" type="text" id="search-input" placeholder="Search course (min 3 characters)...">
             </div>
             <div class="filters">
                 <button class="active btn-filter" data-name="all">Show All</button>
-                <button class="btn-filter" data-name="business ">Business</button>
+                <button class="btn-filter" data-name="buisness">Business</button>
                 <button class="btn-filter" data-name="it">Information Technology</button>
                 <button class="btn-filter" data-name="personal">Personal Development</button>
                 <button class="btn-filter" data-name="art">Art and Humanities</button>
-                <br>
-
-            </div>
-
-        </div>
-
-        <div class="cards">
-            <div data-name="business" class="card">
-                <img src="assets/img/buisness.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Buisness</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
-            </div>
-            <div data-name="it" class="card">
-                <img src="assets/img/it.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Information Technology</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
-            </div>
-            <div data-name="art" class="card">
-                <img src="assets/img/art.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Art and Humanities</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
-            </div>
-
-            <div data-name="business" class="card">
-                <img src="assets/img/buisness.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Buisness</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-
-                </div>
-            </div>
-            <div data-name="personal" class="card">
-                <img src="assets/img/personal.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Personal Development</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
-            </div>
-            <div data-name="it" class="card">
-                <img src="assets/img/it.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Information Technology</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
-            </div>
-            <div data-name="it" class="card">
-                <img src="assets/img/it.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Information Technology</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
-            </div>
-            <div data-name="personal" class="card">
-                <img src="assets/img/personal.jpg" alt="" />
-                <div classes="card-body">
-                    <h6 class="cart-title">Personal Development</h6>
-                    <p class="cart-text">Lorem Ipsum ...</p>
-                </div>
             </div>
         </div>
+        <div id="container"></div>
+        <div id="cards" class="cards"></div>
     </main>
     <aside>
-        <div>
-            <div>My courses</div>
-            <div>Statistic of usage</div>
-            <div>Help Center</div>
+        <div><button class="btn-filter btn-menu">My courses</button> </div>
+        <div><button class="btn-filter btn-menu">Statistic of usage</button> </div>
+        <div><button class="btn-filter btn-menu">Help Center</button></div>
+
+        <div class="article-content">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+            make
+            a type specimen book. It has survived not only five centuries, but also the leap into electronic
+            typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+            containing
+            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+            versions
+            of Lorem Ipsum.
         </div>
+        <br>
+        <h3>Contact Us Here</h3>
+        <div id="map" style="width: 100%; height: 500px;"></div>
+        <script>
+            const map = L.map('map').setView([50.0614, 19.9383], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            const marker = L.marker([50.0614, 19.9383]).addTo(map);
+            marker.bindPopup("<b>Welcome to Cracow</b>").openPopup();
+        </script>
     </aside>
 
     <footer>
-        @images provided by 
+        <h5> Created by Joanna Cepuch</h5>
+        <h6>Images have been downloaded from <a href="https://www.pexels.com">https://www.pexels.com</a></h6>
     </footer>
-
 </body>
 
 </html>

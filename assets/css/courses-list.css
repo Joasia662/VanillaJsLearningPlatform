@@ -3,6 +3,12 @@
     background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
 }
 
+button.active {
+    background-color: blue;
+    color: azure;
+    font-weight: bold;
+}
+
 .cards {
     display: flex;
     justify-content: center;
@@ -63,7 +69,7 @@
     width: 30vw;
 }
 
-.search-contener {
+.search-container {
     display: flex;
     align-items: center;
     justify-content: center;
