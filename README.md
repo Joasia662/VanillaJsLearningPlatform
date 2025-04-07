@@ -1,7 +1,5 @@
 Simple Learning Platform Simulation.
-
 It was created with only JS, HTML and CSS.
-
 To run this project, click on the index.html file.
 
 Implemented functionalities: 
@@ -9,7 +7,7 @@ Implemented functionalities:
 - search courses
 - integrate a map service OpenStreetMap
 
-- 
+
 Site is responsive:
 Zoom 200%:
 ![obraz](https://github.com/user-attachments/assets/85b2a8f3-30ed-4a70-ada5-45e7150b44d8)
